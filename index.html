@@ -1,23 +1,57 @@
 <!doctype html>
-<html lang="en-us">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <title>Labre</title>
-    <link rel="icon" href="./images/labre-icon.png">
-    <link rel="icon" href="./images/labre-icon.svg" type="image/svg+xml">
-    <link href="https://fonts.googleapis.com" rel="preconnect" />
-    <link href="https://fonts.gstatic.com" crossOrigin="true" rel="preconnect" />
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;700&display=swap" rel="stylesheet" />
+    <link rel="icon" href="./images/labre-icon.png" />
+    <link rel="icon" href="./images/labre-icon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;700&display=swap"
+    />
     <link rel="stylesheet" href="./styles/default.css" />
   </head>
   <body>
-    <div id="root">
+    <main>
       <h1>
         <img src="./images/labre-logotype.svg" alt="Labre" />
       </h1>
-      <p style="text-align: center;">
-          <strong>Labre AS</strong>&mdash;<a href="https://w2.brreg.no/enhet/sok/detalj.jsp?orgnr=928965295" target="_blank" rel="noopener" data-external="true">NO928965295MVA</a>
+      <strong>Labre AS</strong>
+      <p>
+        NO 928965295 MVA
+        <button
+          class="copy"
+          type="button"
+          value="928965295"
+          aria-label="Copy org number"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <rect width="14" height="14" x="8" y="8" rx="2" />
+            <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+          </svg>
+        </button>
       </p>
-    </div>
+    </main>
+    <script>
+      const copy = document.querySelector(".copy");
+      let reset;
+
+      copy.addEventListener("click", async () => {
+        await navigator.clipboard.writeText(copy.value);
+        clearTimeout(reset);
+        copy.classList.add("copied");
+        reset = setTimeout(() => copy.classList.remove("copied"), 1500);
+      });
+    </script>
   </body>
 </html>
